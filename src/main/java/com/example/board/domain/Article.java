@@ -20,7 +20,6 @@ import java.util.Set;
 })
 @Entity
 public class Article extends AuditingFields {
-
     protected Article() {
     }
 

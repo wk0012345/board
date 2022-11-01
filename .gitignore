@@ -203,4 +203,5 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,intellij+all,java,gradle
 
-/docker/db
+# docker
+/docker/db/*
