@@ -1,0 +1,51 @@
+debug: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.example.board: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+spring:
+  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/board
+    username: docker
+    password: docker
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+  h2:
+    console:
+      enabled: false
+  sql:
+    init:
+      mode: always
+  data:
+    rest:
+      base-path: /api
+      detection-strategy: annotated
+server:
+  port: 8081
+---
+
+#spring:
+#  config:
+#    activate:
+#      on-profile: : testdb
+#  datasource:
+#    url: jdbc:h2:mem:board;mode=mysql
+#
