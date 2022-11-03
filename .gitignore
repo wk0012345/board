@@ -205,3 +205,6 @@ gradle-app.setting
 
 # docker
 /docker/db/*
+
+# querydsl
+/src/main/generated
