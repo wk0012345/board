@@ -20,17 +20,17 @@ class ArticleControllerTest {
         this.mockMvc = mockMvc;
     }
 
-    @Disabled("구현중")
     @DisplayName("[view] [GET] 게시글 리스트")
     @Test
     public void givenNothing_whenRequestArticlesView_thenReturnArticlesView() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/articles"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.TEXT_HTML))
+                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.view().name("articles/index"))
                 .andExpect(MockMvcResultMatchers.model().attributeExists("articles"));
 
     }
+
     @Disabled("구현중")
     @DisplayName("[view] [GET] 게시글 상세")
     @Test

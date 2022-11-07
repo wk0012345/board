@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>게시판 페이지</title>
+</head>
+<body>
+<header th:replace="~{header :: header }"></header>
+<main>
+    <form>
+        <label for="search-type"
+               hidden>
+            유형
+        </label>
+        <select
+                id="search-type"
+                name="search-type">
+            <option>제목</option>
+            <option>본문</option>
+            <option>ID</option>
+            <option>닉네임</option>
+            <option>해시테그</option>
+        </select>
+        <label for="search-value" hidden>검색어</label>
+        <input type="search" id="search-value" name="search-value" placeholder="select">
+        <button type="submit">검색</button>
+    </form>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>해시테그</th>
+                <th>작성자</th>
+                <th>작성일</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>첫글</td>
+                <td>#해시테그</td>
+                <td>작성자1</td>
+                <td>2022-01-01</td>
+            </tr>
+            <tr>
+                <td>첫글2</td>
+                <td>#해시테그</td>
+                <td>작성자2</td>
+                <td>2022-01-01</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <nav>
+
+        <table>
+            <thead>
+            <tr>
+            <th>prev</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>next</th>
+
+        </tr>
+            </thead>
+        </table>
+
+    </nav>
+
+</main>
+
+<footer th:replace="~{footer :: footer}">
+</footer>
+
+</body>
+</html>
