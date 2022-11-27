@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15'
+sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -51,6 +51,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+// https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
+
+
 }
 
 tasks.named('test') {
