@@ -17,12 +17,12 @@ public class AuthControllerTest {
     AuthControllerTest(@Autowired MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
-
-    @DisplayName("[view] [GET] 로그인 페이지")
-    @Test
-    public void givenNothing_whenTryingToLoggingIn_thenReturnsLoginView() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
-    }
+//
+//    @DisplayName("[view] [GET] 로그인 페이지")
+//    @Test
+//    public void givenNothing_whenTryingToLoggingIn_thenReturnsLoginView() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
+//    }
 }
