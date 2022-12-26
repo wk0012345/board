@@ -3,6 +3,7 @@ package com.example.board.controller;
 import com.example.board.config.SecurityConfig;
 import com.example.board.dto.ArticleWithCommentsDto;
 import com.example.board.service.ArticleService;
+import com.example.board.service.PaginationService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
@@ -32,6 +34,9 @@ class ArticleControllerTest {
     @MockBean
     private ArticleService articleService;
 
+    @MockBean
+    private PaginationService paginationService;
+
     ArticleControllerTest(@Autowired MockMvc mockMvc) {
         this.mockMvc = mockMvc;
     }
@@ -41,15 +46,17 @@ class ArticleControllerTest {
     public void givenNothing_whenRequestArticlesView_thenReturnArticlesView() throws Exception {
 
         given(articleService.searchArticles(eq(null), eq(null), any(Pageable.class))).willReturn(Page.empty());
+        given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(0, 1, 2, 3, 4));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/articles"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.view().name("articles/index"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("articles"));
+                .andExpect(MockMvcResultMatchers.model().attributeExists("articles"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("paginationBarNumbers"));
 //                .andExpect(MockMvcResultMatchers.model().attributeExists("searchTypes"));
         then(articleService).should().searchArticles(eq(null), eq(null), any(Pageable.class));
-
+        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
 
     @Disabled("구현중")
