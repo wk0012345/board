@@ -1,6 +1,7 @@
 package com.example.board.controller;
 
 import com.example.board.config.SecurityConfig;
+import com.example.board.domain.type.SearchType;
 import com.example.board.dto.ArticleWithCommentsDto;
 import com.example.board.service.ArticleService;
 import com.example.board.service.PaginationService;
@@ -58,6 +59,29 @@ class ArticleControllerTest {
         then(articleService).should().searchArticles(eq(null), eq(null), any(Pageable.class));
         then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
+
+    @DisplayName("[view] [GET] 게시글 리스트 검색")
+    @Test
+    public void givenSearchKeyword_whenRequestArticlesView_thenReturnArticlesView() throws Exception {
+
+        SearchType searchType = SearchType.TITLE;
+        String searchValue = "title";
+
+        given(articleService.searchArticles(eq(searchType), eq(searchValue), any(Pageable.class))).willReturn(Page.empty());
+        given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(0, 1, 2, 3, 4));
+
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/articles").queryParam("searchType", searchType.name()).queryParam("searchValue", searchValue))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(MockMvcResultMatchers.view().name("articles/index"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("articles"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("paginationBarNumbers"));
+//                .andExpect(MockMvcResultMatchers.model().attributeExists("searchTypes"));
+        then(articleService).should().searchArticles(eq(searchType), eq(searchValue), any(Pageable.class));
+        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
+    }
+
 
     @Disabled("구현중")
     @DisplayName("[view] [GET] 게시글 상세")
