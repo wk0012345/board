@@ -1,7 +1,7 @@
 package com.example.board.controller;
 
 import com.example.board.config.SecurityConfig;
-import com.example.board.domain.type.SearchType;
+import com.example.board.domain.constant.SearchType;
 import com.example.board.dto.ArticleWithCommentsDto;
 import com.example.board.service.ArticleService;
 import com.example.board.service.PaginationService;

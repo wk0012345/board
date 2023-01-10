@@ -1,29 +1,11 @@
 package com.example.board.service;
 
-import com.example.board.domain.Article;
-import com.example.board.domain.UserAccount;
-import com.example.board.domain.type.SearchType;
-import com.example.board.dto.ArticleDto;
-import com.example.board.dto.ArticleWithCommentsDto;
-import com.example.board.dto.UserAccountDto;
-import com.example.board.repository.ArticleRepository;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import javax.persistence.EntityNotFoundException;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.*;
 
 @DisplayName("비즈니스 로직 - 게시글")
 @ExtendWith(MockitoExtension.class)
